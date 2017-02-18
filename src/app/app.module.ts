@@ -4,17 +4,33 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { DirectoryComponent } from './directory/directory.component';
+import { RouterModule, Routes } from '@angular/router';
+import { LoggingService } from './logging.service';
+import { DataService } from './data.service';
+import { FilterPipe } from './filter.pipe';
+
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'directory', component: DirectoryComponent }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    DirectoryComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [LoggingService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
